@@ -1,2 +1,2 @@
 # control-repo
-control repository for puppet Essential, linkedin training
+ALV control repository for puppet Essential, linkedin training
