@@ -1,3 +1,3 @@
-class profile::elk{
-
+class role::elk{
+  include profile default
 }
