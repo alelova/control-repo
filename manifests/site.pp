@@ -4,3 +4,6 @@ node puppet.local {
 node elk.local {
   include role::elk
 }
+node default {
+  include role::default
+}
