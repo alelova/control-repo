@@ -6,4 +6,8 @@ class profile::base::readme{
     ensure => file,
     content => "Welcome to ${fqdn}\n",
   }
+  file {'/etc/cron.d/apagado':
+    ensure => file,
+    content => "Welcome to ${fqdn}\n",
+  }
 }
