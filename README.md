@@ -1,2 +1,5 @@
 # control-repo
-ALV control repository for puppet Essential, linkedin training
+ALV control repository original from puppet Training
+
+servers:
+ * aws
