@@ -4,6 +4,7 @@ class profile::base::readme{
   }
   file {'/root/README':
     ensure => file,
+    content => "##Gestionado por puppet control-repo",
     content => "Welcome to ${fqdn}\n",
   }
 }
