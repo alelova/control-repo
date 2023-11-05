@@ -4,7 +4,7 @@ node puppet.local {
 node elk.local {
   include role::elk
 }
-node lab-rh9-003.eu-central-1.compute.internal {
+node lab-rh9-003.eu-central.compute.internal {
   include role::rhel9
 }
 node default {
