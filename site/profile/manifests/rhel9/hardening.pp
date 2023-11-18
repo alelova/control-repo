@@ -37,6 +37,6 @@ class profile::rhel9::hardening{
   ###4. Password
   file {'/etc/security/pwquality.conf':
     ensure => file,
-    content => "minclass = 4\nminlen = 14\nretry =5",
+    content => "minclass = 4\nminlen = 14\nretry =3",
   }
 }
