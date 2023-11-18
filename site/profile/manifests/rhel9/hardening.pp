@@ -23,4 +23,10 @@ class profile::rhel9::hardening{
     line   => "Defaults timestamp_timeout=30",
     match  => "Defaults timestamp_timeout=",
   }
+
+  ###3. Banner
+  file {'/etc/issue':
+    ensure => file,
+    content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor",
+  }
 }
