@@ -6,7 +6,7 @@ class profile::rhel9::hardening{
   file_line { 'virtual_host':
   ensure => present,
   path   => '/root/README_hardening',
-  line   => "host_name= ${fqdn}",
+  line   => "host_name= puppet-config",
   match  => 'host_name=',
   }
 }
