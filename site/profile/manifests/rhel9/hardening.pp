@@ -33,4 +33,10 @@ class profile::rhel9::hardening{
     ensure => file,
     content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor",
   }
+
+  ###4. Password
+  file {'/etc/security/pwquality.conf':
+    ensure => file,
+    content => "minclass = 4\n minlen = 14\ retry =5",
+  }
 }
