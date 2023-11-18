@@ -29,4 +29,8 @@ class profile::rhel9::hardening{
     ensure => file,
     content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor",
   }
+  file {'/etc/issue.net':
+    ensure => file,
+    content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor",
+  }
 }
