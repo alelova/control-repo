@@ -11,7 +11,7 @@ class profile::rhel9::hardening{
   }
   
   ###2. Sudo config
-  file_line { 'virtual_host':
+  file_line { 'sudoers_default_pty':
   ensure => present,
   path   => '/etc/sudoers',
   line   => "Defaults use_pty",
