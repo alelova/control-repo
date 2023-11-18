@@ -9,4 +9,12 @@ class profile::rhel9::hardening{
   line   => "host_name= ${fqdn}",
   match  => 'host_name=',
   }
+  
+  ###2. Sudo config
+  file_line { 'virtual_host':
+  ensure => present,
+  path   => '/etc/sudoers',
+  line   => "Defaults use_pty",
+  match  => "Defaults use",
+  }
 }
