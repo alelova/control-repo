@@ -101,7 +101,7 @@ class profile::rhel9::hardening{
   file {'/etc/audit/rules.d/16_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid=0 -F key=perm_mod",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid=0 -F key=perm_mod\n",
   }
   file {'/etc/audit/rules.d/17_hardening.rules':
     ensure => file,
