@@ -3,7 +3,13 @@ class profile::rhel9::hardening{
     ensure => file,
     content => "##File managed by puppet control-repo \nHardening server name: ${fqdn}\n",
   }
-    
+  
+  ###1. grub config
+  file_line { 'grub2_conf':
+    ensure => present,
+    mode => '0600',
+  }
+  
   ###2. Sudo config
   file_line { 'sudoers_default_pty':
     ensure => present,
