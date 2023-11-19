@@ -101,12 +101,12 @@ class profile::rhel9::hardening{
   file {'/etc/audit/rules.d/16_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S fremovexattr -F auid=0 -F key=perm_mod",
   }
   file {'/etc/audit/rules.d/17_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S fsetxattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S fsetxattr -F auid=0 -F key=perm_mod\n",
   }
   file {'/etc/audit/rules.d/18_hardening.rules':
     ensure => file,
@@ -116,22 +116,22 @@ class profile::rhel9::hardening{
 file {'/etc/audit/rules.d/19_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S lremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S lremovexattr -F auid=0 -F key=perm_mod\n",
   }
   file {'/etc/audit/rules.d/20_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S lsetxattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S lsetxattr -F auid=0 -F key=perm_mod\n",
   }
   file {'/etc/audit/rules.d/21_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S removexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S removexattr -F auid=0 -F key=perm_mod\n",
   }
   file {'/etc/audit/rules.d/22_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr -F auid=0 -F key=perm_mod\n",
   }
   file {'/etc/audit/rules.d/23_hardening.rules':
     ensure => file,
@@ -146,7 +146,7 @@ file {'/etc/audit/rules.d/19_hardening.rules':
   file {'/etc/audit/rules.d/25_hardening.rules':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\n-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=unset -F key=export\n",
+    content => "##Managed by puppet\n-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=unset -F key=export\n-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=unset -F key=export\n",
   }
   file {'/etc/audit/rules.d/26_hardening.rules':
     ensure => file,
