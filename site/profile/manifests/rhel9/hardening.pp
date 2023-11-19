@@ -62,10 +62,8 @@ class profile::rhel9::hardening{
   }
 
   ###7. Audit records
-  file_line { 'audit_changes':
-    ensure => present,
-    path   => '/etc/audit/rules.d/autit.rules',
-    line   => "-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod",
-  }
-
+  file {'/etc/audit/rules.d/10_hardening.rules':
+    ensure => file,
+    content => "##File managed by puppet control-repo \n-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod \n",
+ }
 }
