@@ -64,6 +64,17 @@ class profile::rhel9::hardening{
   ###7. Audit records
   file {'/etc/audit/rules.d/10_hardening.rules':
     ensure => file,
-    content => "##File managed by puppet control-repo \n-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod \n",
+    mode => '0666',
+    content => "##Managed by puppet\n-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod",
+ }
+ file {'/etc/audit/rules.d/11_hardening.rules':
+    ensure => file,
+    mode => '0666',
+    content => "##Managed by puppet\n-a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod",
+ }
+ file {'/etc/audit/rules.d/12_hardening.rules':
+    ensure => file,
+    mode => '0666',
+    content => "##Managed by puppet\n-a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=unset -F key=perm_mod",
  }
 }
