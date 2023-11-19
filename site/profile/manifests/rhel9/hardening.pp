@@ -5,8 +5,8 @@ class profile::rhel9::hardening{
   }
   
   ###1. grub config
-  file_line { 'grub2_conf':
-    ensure => present,
+  file {'/boot/grub2/grub.cfg':
+    ensure => file,
     mode => '0600',
   }
   
