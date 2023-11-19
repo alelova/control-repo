@@ -191,7 +191,7 @@ file {'/etc/audit/rules.d/19_hardening.rules':
   file_line { 'audit_rotate':
     ensure => present,
     path   => '/etc/audit/auditd.conf',
-    line   => "max_log_file_action = rotate",
+    line   => "max_log_file_action = keep_logs",
     match  => "max_log_file_action",
   }
 }
