@@ -39,19 +39,19 @@ class profile::rhel9::hardening{
     ensure => present,
     path   => '/etc/login.defs',
     line   => "PASS_MAX_DAYS 45",
-    match  => "PASS_MAX_DAYS",
+    match  => "^PASS_MAX_DAYS",
   }
   file_line { 'pass_min_days':
     ensure => present,
     path   => '/etc/login.defs',
     line   => "PASS_MIN_DAYS 2",
-    match  => "PASS_MIN_DAYS",
+    match  => "^PASS_MIN_DAYS",
   }
   file_line { 'pass_warn_age':
     ensure => present,
     path   => '/etc/login.defs',
     line   => "PASS_WARN_AGE 10",
-    match  => "PASS_WARN_AGE",
+    match  => "^PASS_WARN_AGE",
   }
 
   ###6. Root Logins
