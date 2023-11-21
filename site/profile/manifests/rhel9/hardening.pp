@@ -200,10 +200,10 @@ file {'/etc/audit/rules.d/19_hardening.rules':
     ensure      => present,
     zone        => 'trusted',
     source      => '127.0.0.1',         
-    destination => { 'address' => '127.0.0.1', 'invert' => true }
+    destination => { 'address' => '127.0.0.1', 'invert' => true },
     action      => 'drop',
-
   }
+  
   ###8. Password expiration
   include linux_disable_ipv6.
 }
