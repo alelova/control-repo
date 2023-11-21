@@ -205,5 +205,5 @@ file {'/etc/audit/rules.d/19_hardening.rules':
   }
   
   ###8. Password expiration
-  include linux_disable_ipv6.
+  include linux_disable_ipv6
 }
