@@ -204,6 +204,6 @@ file {'/etc/audit/rules.d/19_hardening.rules':
     action      => 'drop',
   }
   
-  ###8. Password expiration
-  include linux_disable_ipv6
+  ###8. IPv6
+  sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '1' }
 }
