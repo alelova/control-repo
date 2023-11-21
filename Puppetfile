@@ -5,6 +5,7 @@ mod 'puppetlabs-firewall','1.12.0'
 mod 'puppetlabs-stdlib','4.25.0'
 mod 'puppetlabs-apt','4.5.1'
 mod 'puppetlabs-postgresql','5.4.0'
-mod 'benformosa-linux_disable_ipv6', '1.1.0'
+#mod 'benformosa-linux_disable_ipv6', '1.1.0'
 mod 'puppet-firewalld', '5.0.0'
+mod 'thias-sysctl', '1.0.7'
 
