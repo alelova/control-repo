@@ -224,7 +224,7 @@ class profile::rhel9::hardening{
   sysctl { 'net.ipv4.conf.all.log_martians': value => '1' }
   sysctl { 'net.ipv4.conf.all.rp_filter': value => '1' }
   sysctl { 'net.ipv4.conf.all.secure_redirects': value => '0' }
-  sysctl { 'net.ipv4.conf.default.accept_redirect': value => '0' }
+  sysctl { 'net.ipv4.conf.default.accept_redirects': value => '0' }
   sysctl { 'net.ipv4.conf.default.log_martians': value => '1' }
   sysctl { 'net.ipv4.conf.default.rp_filter': value => '1' }
   sysctl { 'net.ipv4.conf.default.secure_redirects': value => '0' }
