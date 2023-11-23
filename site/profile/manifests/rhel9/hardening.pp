@@ -241,7 +241,7 @@ class profile::rhel9::hardening{
     line   => "install udf /bin/true",
     match  => "install udf",
   }
-    file_line { 'disable_usb':
+  file_line { 'disable_usb':
     ensure => present,
     path   => '/etc/modprobe.d/usb-storage.conf',
     line   => "install usb-storage /bin/true",
@@ -250,14 +250,35 @@ class profile::rhel9::hardening{
   sysctl { 'fs.suid_dumpable': value => '0' }
   
   ###12. ssh
-
+  file_line { 'ssh_client_alive':
+    ensure => present,
+    path   => '/etc/ssh/sshd_config',
+    line   => "ClientAliveCountMax 0",
+    match  => "^ClientAliveCountMax",
+  }
+  file {'/etc/ssh/sshd_config.d/00-hardening.conf':
+    ensure => file,
+    mode => '0600',
+    content => "##Managed by puppet\nBanner /etc/issue.net\n",
+  }
+  file_line { 'ssh_allow_users_groups':
+    ensure => present,
+    path   => '/etc/ssh/sshd_config',
+    line   => "AllowGroups student,root",
+    match  => "^ClientAliveCountMax",
+  }
   
   ###13. USB guard
   package {'usbguard':
-		ensure => present,
-	}
-	service { 'usbguard':
-		ensure => 'running',
-		enable => 'true',
-	}
+    ensure => present,
+  }
+  service { 'usbguard':
+    ensure => 'running',
+    enable => 'true',
+  }
+  file {'/etc/usbguard/rules.conf':
+    ensure => file,
+    mode => '0600',
+    content => "##Managed by puppet\nNOT USB allowed in VM\n",
+  }
 }
