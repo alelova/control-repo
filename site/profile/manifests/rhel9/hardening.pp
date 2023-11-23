@@ -203,7 +203,6 @@ class profile::rhel9::hardening{
     ensure => 'running',
     enable => 'true',
   }
-  file
   firewalld_rich_rule { 'restrict_loopback':
     ensure      => present,
     zone        => 'trusted',
