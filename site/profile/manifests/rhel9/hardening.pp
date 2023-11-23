@@ -213,6 +213,11 @@ class profile::rhel9::hardening{
     line   => "DefaultZone=drop",
     match  => "DefaultZone=",
   }
+  firewalld_service { 'Allow SSH':
+    ensure  => 'present',
+    service => 'ssh',
+    zone    => 'drop',
+  }
   firewalld_rich_rule { 'restrict_loopback':
     ensure      => present,
     zone        => 'trusted',
