@@ -196,6 +196,14 @@ class profile::rhel9::hardening{
   }
   
   ###8. firewalld
+  package {'firewalld':
+    ensure => present,
+  }
+  service { 'firewalld':
+    ensure => 'running',
+    enable => 'true',
+  }
+  file
   firewalld_rich_rule { 'restrict_loopback':
     ensure      => present,
     zone        => 'trusted',
