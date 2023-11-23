@@ -113,7 +113,7 @@ class profile::rhel9::hardening{
     mode    => '0600',
     content => "##Managed by puppet\n-a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod\n",
   }
-file {'/etc/audit/rules.d/19_hardening.rules':
+  file {'/etc/audit/rules.d/19_hardening.rules':
     ensure  => file,
     mode    => '0600',
     content => "##Managed by puppet\n-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod\n-a always,exit -F arch=b32 -S lremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S lremovexattr -F auid=0 -F key=perm_mod\n",
@@ -195,7 +195,7 @@ file {'/etc/audit/rules.d/19_hardening.rules':
     match  => "max_log_file_action",
   }
   
-  ###7. firewalld
+  ###8. firewalld
   firewalld_rich_rule { 'restrict_loopback':
     ensure      => present,
     zone        => 'trusted',
@@ -203,7 +203,61 @@ file {'/etc/audit/rules.d/19_hardening.rules':
     dest        => { 'address' => '127.0.0.1', 'invert' => true },
     action      => 'drop',
   }
-  
-  ###8. IPv6
+  firewalld_zone { 'trusted':
+    ensure      => present,
+    interfaces  =>  'lo',
+  }
+    
+  ###9. IPv6
   sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '1' }
+
+  ###10. IPv4
+  sysctl { 'net.ipv4.conf.all.accept_redirects': value => '0' }
+  sysctl { 'net.ipv4.conf.all.accept_source_route': value => '0' }
+  sysctl { 'net.ipv4.conf.all.log_martians': value => '1' }
+  sysctl { 'net.ipv4.conf.all.rp_filter': value => '1' }
+  sysctl { 'net.ipv4.conf.all.secure_redirects': value => '0' }
+  sysctl { 'net.ipv4.conf.default.accept_redirect': value => '0' }
+  sysctl { 'net.ipv4.conf.default.log_martians': value => '1' }
+  sysctl { 'net.ipv4.conf.default.rp_filter': value => '1' }
+  sysctl { 'net.ipv4.conf.default.secure_redirects': value => '0' }
+  sysctl { 'net.ipv4.icmp_echo_ignore_broadcasts': value => '1' }
+  sysctl { 'net.ipv4.icmp_ignore_bogus_error_responses': value => '1' }
+  sysctl { 'net.ipv4.tcp_syncookies': value => '1' }
+  sysctl { 'net.ipv4.conf.all.send_redirects': value => '0' }
+  sysctl { 'net.ipv4.conf.default.send_redirects': value => '0' }
+  sysctl { 'net.ipv4.ip_forward': value => '0' }
+
+  ###11. File permissions
+  file_line { 'disable_squashfs':
+    ensure => present,
+    path   => '/etc/modprobe.d/squashfs.conf',
+    line   => "install squashfs /bin/true",
+    match  => "install squashfs",
+  }
+  file_line { 'disable_udf':
+    ensure => present,
+    path   => '/etc/modprobe.d/udf.conf',
+    line   => "install udf /bin/true",
+    match  => "install udf",
+  }
+    file_line { 'disable_usb':
+    ensure => present,
+    path   => '/etc/modprobe.d/usb-storage.conf',
+    line   => "install usb-storage /bin/true",
+    match  => "install usb-storage",
+  }
+  sysctl { 'fs.suid_dumpable': value => '0' }
+  
+  ###12. ssh
+
+  
+  ###13. USB guard
+  package {'usbguard':
+		ensure => present,
+	}
+	service { 'usbguard':
+		ensure => 'running',
+		enable => 'true',
+	}
 }
