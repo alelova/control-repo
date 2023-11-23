@@ -203,6 +203,10 @@ class profile::rhel9::hardening{
     ensure => 'running',
     enable => 'true',
   }
+  service { 'nftables':
+    ensure => 'stopped',
+    enable => 'false',
+  }
   firewalld_rich_rule { 'restrict_loopback':
     ensure      => present,
     zone        => 'trusted',
