@@ -207,6 +207,12 @@ class profile::rhel9::hardening{
     ensure => 'stopped',
     enable => 'false',
   }
+  file_line { 'drop_default':
+    ensure => present,
+    path   => '/etc/firewalld/firewalld.conf',
+    line   => "DefaultZone=drop",
+    match  => "DefaultZone=",
+  }
   firewalld_rich_rule { 'restrict_loopback':
     ensure      => present,
     zone        => 'trusted',
