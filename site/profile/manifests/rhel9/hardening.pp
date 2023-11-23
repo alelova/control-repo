@@ -244,12 +244,12 @@ class profile::rhel9::hardening{
   file {'/etc/modprobe.d/udf.conf':
     ensure  => file,
     mode    => '0600',
-    content => "##Managed by puppet\nblacklist udf\n",
+    content => "##Managed by puppet\ninstall udf /bin/true\nblacklist udf\n",
   }
   file {'/etc/modprobe.d/usb-storage.conf':
     ensure  => file,
     mode    => '0600',
-    content => "##Managed by puppet\ninstall usb-storage /bin/true\n",
+    content => "##Managed by puppet\ninstall usb-storage /bin/true\nblacklist usb-storage\n",
   }
   sysctl { 'fs.suid_dumpable': value => '0' }
   
