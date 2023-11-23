@@ -229,23 +229,20 @@ class profile::rhel9::hardening{
   sysctl { 'net.ipv4.ip_forward': value => '0' }
 
   ###11. File permissions
-  file_line { 'disable_squashfs':
-    ensure => present,
-    path   => '/etc/modprobe.d/squashfs.conf',
-    line   => "install squashfs /bin/true",
-    match  => "install squashfs",
+  file {'/etc/modprobe.d/squashfs.conf':
+    ensure  => file,
+    mode    => '0600',
+    content => "##Managed by puppet\ninstall squashfs /bin/true\n",
   }
-  file_line { 'disable_udf':
-    ensure => present,
-    path   => '/etc/modprobe.d/udf.conf',
-    line   => "install udf /bin/true",
-    match  => "install udf",
+  file {'etc/modprobe.d/udf.conf':
+    ensure  => file,
+    mode    => '0600',
+    content => "##Managed by puppet\ninstall udf /bin/true\n",
   }
-  file_line { 'disable_usb':
-    ensure => present,
-    path   => '/etc/modprobe.d/usb-storage.conf',
-    line   => "install usb-storage /bin/true",
-    match  => "install usb-storage",
+  file {'etc/modprobe.d/usb-storage.conf':
+    ensure  => file,
+    mode    => '0600',
+    content => "##Managed by puppet\ninstall usb-storage /bin/true\n",
   }
   sysctl { 'fs.suid_dumpable': value => '0' }
   
