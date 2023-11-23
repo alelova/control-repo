@@ -239,12 +239,12 @@ class profile::rhel9::hardening{
   file {'/etc/modprobe.d/squashfs.conf':
     ensure  => file,
     mode    => '0600',
-    content => "##Managed by puppet\ninstall squashfs /bin/true\n",
+    content => "##Managed by puppet\ninstall squashfs /bin/true\nblacklist squashfs\n",
   }
   file {'/etc/modprobe.d/udf.conf':
     ensure  => file,
     mode    => '0600',
-    content => "##Managed by puppet\ninstall udf /bin/true\n",
+    content => "##Managed by puppet\nblacklist udf\n",
   }
   file {'/etc/modprobe.d/usb-storage.conf':
     ensure  => file,
