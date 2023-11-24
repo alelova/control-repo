@@ -203,6 +203,9 @@ class profile::rhel9::hardening{
     ensure => 'running',
     enable => 'true',
   }
+  file {'/usr/lib/systemd/system/nftables.service':
+    ensure  => absent,
+  }
   service { 'nftables':
     ensure => 'stopped',
     enable => 'false',
