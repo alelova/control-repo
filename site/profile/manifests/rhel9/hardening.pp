@@ -287,7 +287,7 @@ class profile::rhel9::hardening{
     ensure => present,
     path   => '/etc/ssh/sshd_config',
     line   => "AllowGroups student root ssh_allow",
-    match  => "^ClientAliveCountMax",
+    match  => "^AllowGroups",
   }
   
   ###13. USB guard
