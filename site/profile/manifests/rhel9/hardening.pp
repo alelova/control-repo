@@ -27,11 +27,11 @@ class profile::rhel9::hardening{
   ###3. Banner
   file {'/etc/issue':
     ensure => file,
-    content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor",
+    content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor\n",
   }
   file {'/etc/issue.net':
     ensure => file,
-    content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor",
+    content => "He leido y acepto los terminos de TFM Uned para el uso de este servidor\n",
   }
 
   ###4. Password quality
@@ -283,7 +283,7 @@ class profile::rhel9::hardening{
   file_line { 'ssh_allow_users_groups':
     ensure => present,
     path   => '/etc/ssh/sshd_config',
-    line   => "AllowGroups student,root",
+    line   => "AllowGroups student root ssh_allow",
     match  => "^ClientAliveCountMax",
   }
   
