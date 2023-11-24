@@ -301,6 +301,6 @@ class profile::rhel9::hardening{
   file {'/etc/usbguard/rules.conf':
     ensure => file,
     mode => '0600',
-    content => "##Managed by puppet\nNOT USB allowed in VM\n",
+    content => "##Managed by puppet\n##NOT USB allowed in VM\n",
   }
 }
